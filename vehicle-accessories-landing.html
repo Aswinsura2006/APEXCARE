@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ApexCare — India's trusted source for professional-grade vehicle care products. Engine oils, chain lubricants, polishes, cleaners & more. Pan-India delivery.">
+<meta name="keywords" content="vehicle care, car accessories, engine oil, chain lubricant, car polish, bike care, India">
+<meta name="author" content="ApexCare">
+<meta name="theme-color" content="#1a1612">
+<meta property="og:title" content="APEX CARE — Premium Vehicle Care Accessories">
+<meta property="og:description" content="Professional-grade car & bike care products trusted by 50K+ customers across India.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://apexcare.in">
+<title>APEX CARE — Premium Vehicle Care Accessories | India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+
+:root {
+  --cream: #f7f3ec;
+  --cream-dark: #ede8df;
+  --cream-mid: #f0ebe1;
+  --parchment: #e8e0d0;
+  --ink: #1a1612;
+  --ink-mid: #3a342c;
+  --ink-light: #7a6f62;
+  --amber: #c8852a;
+  --amber-light: #e8a84a;
+  --amber-pale: #f5e8cc;
+  --red: #b83a2f;
+  --white: #ffffff;
+  --border: rgba(26,22,18,0.10);
+  --border-strong: rgba(26,22,18,0.18);
+  --shadow-sm: 0 2px 12px rgba(26,22,18,0.08);
+  --shadow-md: 0 8px 32px rgba(26,22,18,0.12);
+  --shadow-lg: 0 24px 64px rgba(26,22,18,0.14);
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(247,243,236,0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 68px;
+  transition: box-shadow 0.3s;
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px; letter-spacing: 0.15em;
+  color: var(--ink); text-decoration: none; white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-logo span { color: var(--amber); }
+.nav-links {
+  display: flex; gap: 32px; list-style: none;
+  position: absolute; left: 50%; transform: translateX(-50%);
+}
+.nav-links a {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+  color: var(--ink-light); text-decoration: none; transition: color 0.2s; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.nav-icon-btn {
+  width: 36px; height: 36px; border: 1px solid var(--border-strong);
+  background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+}
+.nav-icon-btn:hover { background: var(--parchment); }
+.nav-icon-btn svg { width: 15px; height: 15px; stroke: var(--ink-mid); fill: none; stroke-width: 2; }
+.nav-cta {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; color: var(--white); background: var(--ink);
+  padding: 10px 22px; transition: background 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--amber); }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); }
+
+/* Mobile Drawer */
+.mobile-nav {
+  display: none;
+  position: fixed; top: 68px; left: 0; right: 0; z-index: 199;
+  background: var(--cream); border-bottom: 1px solid var(--border);
+  padding: 20px 24px 28px;
+  flex-direction: column;
+  transform: translateY(-120%); transition: transform 0.3s ease; pointer-events: none;
+}
+.mobile-nav.open { transform: translateY(0); pointer-events: all; }
+.mobile-nav a {
+  display: block; font-size: 15px; font-weight: 500;
+  color: var(--ink-mid); text-decoration: none;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.mobile-nav .mn-cta {
+  margin-top: 16px; display: block; text-align: center;
+  background: var(--ink); color: var(--white); padding: 13px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  border-bottom: none;
+}
+
+/* ── HERO ── */
+.hero {
+  margin-top: 68px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 68px);
+  overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 56px 80px 48px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 28px;
+}
+.hero-badge::before { content: ''; width: 32px; height: 1px; background: var(--amber); }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5vw, 76px); font-weight: 900;
+  line-height: 1.04; letter-spacing: -0.02em; color: var(--ink);
+}
+.hero-title em { font-style: italic; color: var(--amber); }
+.hero-desc {
+  margin-top: 22px; font-size: 15px; font-weight: 300;
+  color: var(--ink-light); max-width: 400px; line-height: 1.75;
+}
+.hero-actions {
+  margin-top: 38px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+}
+.btn-fill {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--white); background: var(--ink); padding: 14px 30px;
+  text-decoration: none; border: 1px solid var(--ink); transition: background 0.25s, color 0.25s; display: inline-block;
+}
+.btn-fill:hover { background: var(--amber); border-color: var(--amber); }
+.btn-outline {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink); background: transparent; padding: 14px 30px;
+  text-decoration: none; border: 1px solid var(--border-strong); transition: border-color 0.2s; display: inline-block;
+}
+.btn-outline:hover { border-color: var(--ink); }
+.hero-trust { margin-top: 48px; display: flex; gap: 36px; flex-wrap: wrap; }
+.trust-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 36px;
+  letter-spacing: 0.05em; color: var(--ink); line-height: 1;
+}
+.trust-num span { color: var(--amber); }
+.trust-label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-light); margin-top: 2px;
+}
+.hero-right {
+  position: relative; overflow: hidden; background: var(--parchment);
+}
+.hero-right img { position: absolute; inset: 0; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(247,243,236,0.25) 0%, transparent 35%);
+}
+.hero-card {
+  position: absolute; bottom: 36px; left: -24px; z-index: 3;
+  background: var(--white); border: 1px solid var(--border);
+  box-shadow: var(--shadow-md); padding: 16px 20px; min-width: 190px;
+}
+.hc-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-light); margin-bottom: 4px;
+}
+.hc-name { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.hc-price {
+  font-family: 'Bebas Neue', sans-serif; font-size: 22px;
+  color: var(--amber); letter-spacing: 0.04em; margin-top: 6px;
+}
+.hc-dot {
+  position: absolute; top: -7px; right: -7px;
+  width: 14px; height: 14px; background: var(--amber); border-radius: 50%;
+}
+
+/* ── MARQUEE ── */
+.marquee-strip {
+  background: var(--ink); padding: 11px 0; overflow: hidden;
+}
+.marquee-track {
+  display: flex; white-space: nowrap;
+  animation: scrollLeft 24s linear infinite;
+}
+.marquee-item {
+  font-family: 'Bebas Neue', sans-serif; font-size: 13px;
+  letter-spacing: 0.24em; color: rgba(247,243,236,0.5);
+  padding: 0 36px; display: flex; align-items: center; gap: 36px;
+}
+.marquee-item::after { content: '\00B7'; color: var(--amber); font-size: 20px; }
+@keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SECTION COMMON ── */
+.section { padding: 96px 48px; }
+.section-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 3.8vw, 50px); font-weight: 900;
+  line-height: 1.06; color: var(--ink); letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; color: var(--amber); }
+.section-sub {
+  margin-top: 14px; font-size: 15px; font-weight: 300;
+  color: var(--ink-light); max-width: 440px; line-height: 1.7;
+}
+.section-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 52px; flex-wrap: wrap;
+}
+.view-all {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--border-strong); padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+}
+.view-all:hover { color: var(--amber); border-color: var(--amber); }
+
+/* ── CATEGORIES ── */
+.cat-section { padding: 96px 48px; background: var(--cream-mid); }
+.cat-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.cat-card {
+  background: var(--white); border: 1px solid var(--border); overflow: hidden;
+  cursor: pointer; transition: box-shadow 0.3s, transform 0.3s;
+  text-decoration: none; display: block;
+}
+.cat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.cat-img { height: 200px; overflow: hidden; background: var(--parchment); }
+.cat-img img { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.cat-card:hover .cat-img img { transform: scale(1.06); }
+.cat-body { padding: 20px; }
+.cat-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 6px;
+}
+.cat-name {
+  font-family: 'Playfair Display', serif; font-size: 16px;
+  font-weight: 700; color: var(--ink); margin-bottom: 4px;
+}
+.cat-count { font-size: 12px; color: var(--ink-light); }
+.cat-arrow {
+  display: inline-flex; margin-top: 12px; width: 30px; height: 30px;
+  border: 1px solid var(--border-strong); align-items: center; justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+.cat-card:hover .cat-arrow { background: var(--ink); border-color: var(--ink); }
+.cat-card:hover .cat-arrow svg { stroke: var(--white); }
+.cat-arrow svg { width: 12px; height: 12px; stroke: var(--ink-mid); fill: none; stroke-width: 2; }
+
+/* ── PRODUCTS ── */
+.products-section { padding: 96px 48px; background: var(--cream); }
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.product-card {
+  background: var(--white); border: 1px solid var(--border);
+  overflow: hidden; transition: box-shadow 0.3s; cursor: pointer;
+}
+.product-card:hover { box-shadow: var(--shadow-md); }
+.product-img { height: 230px; background: var(--cream-dark); overflow: hidden; position: relative; }
+.product-img img { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.product-card:hover .product-img img { transform: scale(1.05); }
+.badge-wrap { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+.badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; padding: 4px 9px;
+}
+.badge-new { background: var(--amber); color: var(--white); }
+.badge-sale { background: var(--red); color: var(--white); }
+.badge-top { background: var(--ink); color: var(--white); }
+.product-body { padding: 20px; }
+.product-category {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-light); margin-bottom: 6px;
+}
+.product-name {
+  font-family: 'Playfair Display', serif; font-size: 16px;
+  font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 8px;
+}
+.product-desc {
+  font-size: 13px; color: var(--ink-light); line-height: 1.65; margin-bottom: 16px;
+}
+.product-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px; border-top: 1px solid var(--border);
+}
+.product-price {
+  font-family: 'Bebas Neue', sans-serif; font-size: 24px;
+  letter-spacing: 0.04em; color: var(--ink);
+}
+.product-price .old {
+  font-family: 'DM Sans', sans-serif; font-size: 12px;
+  color: var(--ink-light); text-decoration: line-through; margin-left: 5px; letter-spacing: 0;
+}
+.add-btn {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--white); background: var(--ink); border: none;
+  padding: 10px 16px; cursor: pointer; transition: background 0.2s;
+}
+.add-btn:hover { background: var(--amber); }
+
+/* ── PROMO ── */
+.promo-wrap { padding: 0 48px; }
+.promo-banner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  overflow: hidden; border: 1px solid var(--border-strong); box-shadow: var(--shadow-lg);
+}
+.promo-img { height: 420px; overflow: hidden; background: var(--parchment); }
+.promo-img img { object-position: center; }
+.promo-content {
+  background: var(--ink); padding: 56px 48px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.promo-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.promo-tag::before { content: ''; width: 24px; height: 1px; background: var(--amber); }
+.promo-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 2.8vw, 42px); font-weight: 900;
+  line-height: 1.1; color: var(--cream); margin-bottom: 14px;
+}
+.promo-title em { font-style: italic; color: var(--amber); }
+.promo-desc {
+  font-size: 14px; font-weight: 300;
+  color: rgba(247,243,236,0.62); line-height: 1.75; margin-bottom: 30px;
+}
+.btn-amber {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink); background: var(--amber); padding: 13px 30px;
+  text-decoration: none; border: 1px solid var(--amber);
+  transition: background 0.2s, color 0.2s; display: inline-block; align-self: flex-start;
+}
+.btn-amber:hover { background: transparent; color: var(--amber); }
+
+/* ── WHY US ── */
+.why-section {
+  padding: 96px 48px; background: var(--cream-mid);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.why-img-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: 220px 220px; gap: 10px;
+}
+.why-img-cell { overflow: hidden; background: var(--parchment); }
+.why-img-cell.tall { grid-row: 1 / 3; }
+.why-img-cell img { transition: transform 0.5s ease; }
+.why-img-cell:hover img { transform: scale(1.04); }
+.why-accent {
+  background: var(--amber); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4px;
+}
+.why-accent-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 52px;
+  color: var(--white); line-height: 1;
+}
+.why-accent-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(255,255,255,0.72);
+}
+.feature-list { margin-top: 38px; }
+.feature-item {
+  display: flex; gap: 16px; padding: 20px 0;
+  border-bottom: 1px solid var(--border); transition: padding-left 0.25s;
+}
+.feature-item:first-child { border-top: 1px solid var(--border); }
+.feature-item:hover { padding-left: 6px; }
+.feature-icon {
+  width: 38px; height: 38px; flex-shrink: 0;
+  background: var(--amber-pale); border: 1px solid rgba(200,133,42,0.2);
+  display: flex; align-items: center; justify-content: center;
+}
+.feature-icon svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 1.8; }
+.feature-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.feature-text { font-size: 13px; color: var(--ink-light); line-height: 1.6; }
+
+/* ── TESTIMONIALS ── */
+.testi-section {
+  padding: 96px 48px; background: var(--cream); position: relative; overflow: hidden;
+}
+.testi-bg {
+  position: absolute; top: 10px; right: -10px;
+  font-family: 'Playfair Display', serif; font-size: 200px; font-weight: 900;
+  color: rgba(26,22,18,0.04); line-height: 1; pointer-events: none; user-select: none;
+}
+.testi-grid { margin-top: 52px; display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.testi-card {
+  background: var(--white); border: 1px solid var(--border); padding: 30px;
+}
+.testi-qmark {
+  font-family: 'Playfair Display', serif; font-size: 56px;
+  font-weight: 900; color: var(--amber); line-height: 0.8; margin-bottom: 14px;
+}
+.testi-stars { color: var(--amber); font-size: 12px; letter-spacing: 2px; margin-bottom: 12px; }
+.testi-text {
+  font-size: 14px; color: var(--ink-mid); line-height: 1.75;
+  font-style: italic; margin-bottom: 22px;
+}
+.testi-divider { width: 28px; height: 2px; background: var(--amber); margin-bottom: 18px; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 40px; height: 40px; overflow: hidden; flex-shrink: 0;
+  border: 2px solid var(--border); background: var(--cream-dark);
+}
+.testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.testi-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+.testi-vehicle { font-size: 11px; color: var(--ink-light); margin-top: 2px; }
+
+/* ── NEWSLETTER ── */
+.newsletter-wrap { padding: 0 48px 96px; }
+.newsletter {
+  background: var(--ink); padding: 60px 56px;
+  display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.nl-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 2.8vw, 36px); font-weight: 900;
+  color: var(--cream); margin-bottom: 8px;
+}
+.nl-title em { font-style: italic; color: var(--amber); }
+.nl-sub { font-size: 14px; font-weight: 300; color: rgba(247,243,236,0.5); }
+.nl-form { display: flex; min-width: 340px; }
+.nl-input {
+  flex: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  border-right: none; color: var(--cream); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; padding: 13px 16px; outline: none; transition: border-color 0.2s;
+}
+.nl-input::placeholder { color: rgba(247,243,236,0.28); }
+.nl-input:focus { border-color: var(--amber); }
+.nl-btn {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  background: var(--amber); color: var(--ink); border: 1px solid var(--amber);
+  padding: 13px 26px; cursor: pointer; transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.nl-btn:hover { background: transparent; color: var(--amber); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--cream-mid); border-top: 1px solid var(--border);
+  padding: 64px 48px 32px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 48px;
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px;
+  letter-spacing: 0.15em; color: var(--ink); text-decoration: none; display: block; margin-bottom: 14px;
+}
+.footer-logo span { color: var(--amber); }
+.footer-about { font-size: 13px; color: var(--ink-light); line-height: 1.7; max-width: 230px; }
+.footer-head {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--ink); margin-bottom: 18px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 13px; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--amber); }
+.footer-bottom {
+  padding-top: 28px; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+}
+.footer-copy { font-size: 12px; color: var(--ink-light); }
+.footer-socials { display: flex; gap: 10px; }
+.social-link {
+  width: 34px; height: 34px; border: 1px solid var(--border-strong);
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; transition: background 0.2s, border-color 0.2s;
+}
+.social-link:hover { background: var(--ink); border-color: var(--ink); }
+.social-link:hover svg { stroke: var(--white); }
+.social-link svg { width: 14px; height: 14px; stroke: var(--ink-mid); fill: none; stroke-width: 1.8; }
+
+/* ── REVEAL (GSAP handles these now) ── */
+.reveal { opacity: 0; transform: translateY(40px); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── PARALLAX ── */
+.parallax-img { will-change: transform; }
+
+/* ── CUSTOM CURSOR GLOW ── */
+.cursor-glow {
+  position: fixed; top: 0; left: 0; width: 320px; height: 320px;
+  pointer-events: none; z-index: 9999;
+  background: radial-gradient(circle, rgba(200,133,42,0.07) 0%, transparent 70%);
+  transform: translate(-50%, -50%); opacity: 0;
+  transition: opacity 0.4s;
+}
+.cursor-glow.active { opacity: 1; }
+
+/* ── HERO ANIMATIONS ── */
+.hero-badge { opacity: 0; transform: translateX(-20px); }
+.hero-title { opacity: 0; }
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .line-inner { display: block; transform: translateY(110%); }
+.hero-desc { opacity: 0; transform: translateY(20px); }
+.hero-actions { opacity: 0; transform: translateY(20px); }
+.hero-trust { opacity: 0; transform: translateY(20px); }
+.hero-card { opacity: 0; transform: translate(-40px, 20px) scale(0.95); }
+
+/* ── FLOATING ANIMATION ── */
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.hero-card.animated { animation: float 4s ease-in-out infinite; }
+
+/* ── MAGNETIC BUTTON ── */
+.btn-fill, .btn-outline, .btn-amber, .nav-cta, .add-btn, .nl-btn {
+  position: relative; overflow: hidden;
+}
+.btn-fill::after, .btn-amber::after, .nav-cta::after, .add-btn::after, .nl-btn::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 0; height: 0; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transform: translate(-50%,-50%); transition: width 0.5s, height 0.5s;
+}
+.btn-fill:hover::after, .btn-amber:hover::after, .nav-cta:hover::after, .add-btn:hover::after, .nl-btn:hover::after {
+  width: 300px; height: 300px;
+}
+
+/* ── STAGGER CHILDREN ── */
+.stagger-child { opacity: 0; transform: translateY(30px); }
+
+/* ── MARQUEE PAUSE ON HOVER ── */
+.marquee-strip:hover .marquee-track { animation-play-state: paused; }
+
+/* ── SECTION PARALLAX BACKGROUNDS ── */
+.cat-section, .why-section, .testi-section { position: relative; }
+
+/* ── SMOOTH IMAGE PARALLAX ── */
+.hero-right img, .promo-img img, .why-img-cell img { will-change: transform; }
+
+/* ── TILT CARD EFFECT ── */
+.product-card { transition: box-shadow 0.3s, transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+.cat-card { transition: box-shadow 0.3s, transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+
+/* ── COUNTER ANIMATION ── */
+.trust-num, .why-accent-num { overflow: hidden; }
+
+/* ── NAV LINK UNDERLINE ANIMATION ── */
+.nav-links a { position: relative; }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
+  background: var(--amber); transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* ── SCROLL PROGRESS BAR ── */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 300;
+  background: linear-gradient(90deg, var(--amber), var(--amber-light));
+  transform-origin: left; transform: scaleX(0);
+  will-change: transform;
+}
+
+/* ── BACK TO TOP ── */
+.back-to-top {
+  position: fixed; bottom: 32px; right: 32px; z-index: 100;
+  width: 44px; height: 44px; border: 1px solid var(--border-strong);
+  background: var(--white); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; opacity: 0; transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s, border-color 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+.back-to-top.visible { opacity: 1; transform: translateY(0); }
+.back-to-top:hover { background: var(--ink); border-color: var(--ink); }
+.back-to-top:hover svg { stroke: var(--white); }
+.back-to-top svg { width: 16px; height: 16px; stroke: var(--ink); fill: none; stroke-width: 2; }
+
+/* ── LOADING SCREEN ── */
+.loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--ink); display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+.loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-logo {
+  font-family: 'Bebas Neue', sans-serif; font-size: 42px;
+  letter-spacing: 0.2em; color: var(--cream); opacity: 0;
+}
+.loader-logo span { color: var(--amber); }
+.loader-bar-track {
+  width: 120px; height: 2px; background: rgba(247,243,236,0.12);
+  margin-top: 24px; overflow: hidden; border-radius: 1px;
+}
+.loader-bar {
+  height: 100%; width: 0; background: var(--amber);
+  transition: width 0.1s;
+}
+
+/* ── HAMBURGER ANIMATION ── */
+.nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; }
+.nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.nav-hamburger span { transition: transform 0.3s, opacity 0.3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-nav { display: flex; }
+  .cursor-glow { display: none; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 52px 24px 40px; }
+  .hero-right { height: 340px; }
+  .hero-card { bottom: 20px; left: 14px; }
+
+  .section { padding: 64px 24px; }
+  .cat-section { padding: 64px 24px; }
+  .products-section { padding: 64px 24px; }
+  .testi-section { padding: 64px 24px; }
+  .why-section { padding: 64px 24px; grid-template-columns: 1fr; gap: 40px; }
+  .promo-wrap { padding: 0 24px; }
+  .promo-banner { grid-template-columns: 1fr; }
+  .promo-img { height: 260px; }
+  .promo-content { padding: 40px 28px; }
+  .newsletter-wrap { padding: 0 24px 64px; }
+  .newsletter { grid-template-columns: 1fr; gap: 28px; padding: 40px 28px; }
+  .nl-form { min-width: unset; width: 100%; }
+  footer { padding: 48px 24px 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .testi-grid { grid-template-columns: 1fr; gap: 14px; }
+  .why-img-grid { grid-template-rows: 180px 180px; }
+  .back-to-top { bottom: 20px; right: 20px; }
+}
+
+@media (max-width: 600px) {
+  nav { height: 60px; }
+  .mobile-nav { top: 60px; }
+  .hero { margin-top: 60px; }
+  .hero-left { padding: 36px 20px 32px; }
+  .hero-title { font-size: 36px; }
+  .hero-right { height: 240px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .btn-fill, .btn-outline { text-align: center; padding: 16px 30px; font-size: 13px; }
+  .hero-trust { gap: 20px; }
+
+  .section { padding: 52px 20px; }
+  .cat-section { padding: 52px 20px; }
+  .products-section { padding: 52px 20px; }
+  .testi-section { padding: 52px 20px; }
+  .why-section { padding: 52px 20px; }
+  .promo-wrap { padding: 0 20px; }
+  .newsletter-wrap { padding: 0 20px 52px; }
+  footer { padding: 40px 20px 24px; }
+
+  .cat-grid { grid-template-columns: 1fr; gap: 12px; }
+  .product-grid { grid-template-columns: 1fr; gap: 14px; }
+  .section-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .nl-form { flex-direction: column; }
+  .nl-input { border-right: 1px solid rgba(255,255,255,0.12); border-bottom: none; }
+  .nl-btn { width: 100%; padding: 16px; }
+  .why-img-grid { grid-template-columns: 1fr; grid-template-rows: 200px; }
+  .why-img-cell.tall { display: none; }
+  .why-accent { height: 110px; }
+  .testi-bg { display: none; }
+  .promo-title { font-size: 24px; }
+  .promo-content { padding: 32px 20px; }
+  .add-btn { padding: 12px 18px; }
+  .scroll-progress { height: 2px; }
+}
+
+@media (max-width: 380px) {
+  .hero-title { font-size: 30px; }
+  .hero-left { padding: 28px 16px 24px; }
+  .section { padding: 40px 16px; }
+  .cat-section, .products-section, .testi-section, .why-section { padding: 40px 16px; }
+  .promo-wrap, .newsletter-wrap { padding: 0 16px; }
+  .newsletter-wrap { padding-bottom: 40px; }
+  footer { padding: 32px 16px 20px; }
+  nav { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div class="loader" id="loader">
+  <div class="loader-logo" id="loaderLogo">APEX<span>CARE</span></div>
+  <div class="loader-bar-track"><div class="loader-bar" id="loaderBar"></div></div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">APEX<span>CARE</span></a>
+  <ul class="nav-links">
+    <li><a href="#">Lubricants</a></li>
+    <li><a href="#">Polish & Wax</a></li>
+    <li><a href="#">Cleaners</a></li>
+    <li><a href="#">Protection</a></li>
+    <li><a href="#">Brands</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-icon-btn" aria-label="Search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    </button>
+    <a href="#" class="nav-cta">Shop Now</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#">Lubricants</a>
+  <a href="#">Polish &amp; Wax</a>
+  <a href="#">Cleaners</a>
+  <a href="#">Protection</a>
+  <a href="#">Brands</a>
+  <a href="#" class="mn-cta">Shop All Products</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Premium Vehicle Care</div>
+    <h1 class="hero-title">
+      <span class="line"><span class="line-inner">Keep Your Ride</span></span>
+      <span class="line"><span class="line-inner"><em>Performing</em></span></span>
+      <span class="line"><span class="line-inner">at Its Best</span></span>
+    </h1>
+    <p class="hero-desc">Professional-grade chain lubricants, engine oils, polishes, and care products trusted by mechanics and enthusiasts across India.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-fill">Shop Collection</a>
+      <a href="#" class="btn-outline">View Catalogue</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <div class="trust-num">8<span>K+</span></div>
+        <div class="trust-label">Products</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">50<span>K+</span></div>
+        <div class="trust-label">Customers</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">24<span>H</span></div>
+        <div class="trust-label">Dispatch</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1000&q=80&fit=crop" alt="Vehicle care and maintenance products" loading="eager">
+    <div class="hero-overlay"></div>
+    <div class="hero-card">
+      <div class="hc-label">Bestseller</div>
+      <div class="hc-name">Castrol Chain Lube 400ml</div>
+      <div class="hc-price">&#8377;649</div>
+      <div class="hc-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <div class="marquee-item">Engine Oil</div>
+    <div class="marquee-item">Chain Lubricant</div>
+    <div class="marquee-item">Car Polish</div>
+    <div class="marquee-item">Tyre Shine</div>
+    <div class="marquee-item">Brake Cleaner</div>
+    <div class="marquee-item">Anti-Rust Spray</div>
+    <div class="marquee-item">Glass Cleaner</div>
+    <div class="marquee-item">Wax Compound</div>
+    <div class="marquee-item">Radiator Coolant</div>
+    <div class="marquee-item">Engine Degreaser</div>
+    <div class="marquee-item">Engine Oil</div>
+    <div class="marquee-item">Chain Lubricant</div>
+    <div class="marquee-item">Car Polish</div>
+    <div class="marquee-item">Tyre Shine</div>
+    <div class="marquee-item">Brake Cleaner</div>
+    <div class="marquee-item">Anti-Rust Spray</div>
+    <div class="marquee-item">Glass Cleaner</div>
+    <div class="marquee-item">Wax Compound</div>
+    <div class="marquee-item">Radiator Coolant</div>
+    <div class="marquee-item">Engine Degreaser</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="cat-section reveal">
+  <div class="section-row">
+    <div>
+      <div class="section-eyebrow">Browse by Category</div>
+      <h2 class="section-title">Everything Your<br>Vehicle <em>Needs</em></h2>
+    </div>
+    <a href="#" class="view-all">All Categories &rarr;</a>
+  </div>
+  <div class="cat-grid">
+    <a href="#" class="cat-card reveal d1">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop" alt="Engine oils and lubricants" loading="lazy">
+      </div>
+      <div class="cat-body">
+        <div class="cat-label">Lubrication</div>
+        <div class="cat-name">Engine Oils & Lubricants</div>
+        <div class="cat-count">1,240 products</div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </div>
+    </a>
+    <a href="#" class="cat-card reveal d2">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=600&q=80&fit=crop" alt="Car polish and detailing" loading="lazy">
+      </div>
+      <div class="cat-body">
+        <div class="cat-label">Appearance</div>
+        <div class="cat-name">Polish, Wax & Detailing</div>
+        <div class="cat-count">890 products</div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </div>
+    </a>
+    <a href="#" class="cat-card reveal d1">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1504222490345-c075b6008014?w=600&q=80&fit=crop" alt="Cleaning products" loading="lazy">
+      </div>
+      <div class="cat-body">
+        <div class="cat-label">Cleaning</div>
+        <div class="cat-name">Cleaners & Degreasers</div>
+        <div class="cat-count">670 products</div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </div>
+    </a>
+    <a href="#" class="cat-card reveal d2">
+      <div class="cat-img">
+        <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=80&fit=crop" alt="Vehicle protection products" loading="lazy">
+      </div>
+      <div class="cat-body">
+        <div class="cat-label">Protection</div>
+        <div class="cat-name">Anti-Rust & Protection</div>
+        <div class="cat-count">520 products</div>
+        <div class="cat-arrow"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section">
+  <div class="section-row reveal">
+    <div>
+      <div class="section-eyebrow">Top Sellers</div>
+      <h2 class="section-title">Featured <em>Products</em></h2>
+    </div>
+    <a href="#" class="view-all">All Products &rarr;</a>
+  </div>
+  <div class="product-grid">
+
+    <div class="product-card reveal d1">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80&fit=crop" alt="Chain lubricant spray can" loading="lazy">
+        <div class="badge-wrap"><span class="badge badge-top">Bestseller</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Lubrication</div>
+        <div class="product-name">All-Weather Chain Lubricant Spray</div>
+        <div class="product-desc">Long-lasting formula for motorcycle and bicycle chains. Resists water, mud, and high-speed fling-off. 400ml.</div>
+        <div class="product-footer">
+          <div class="product-price">&#8377;649 <span class="old">&#8377;850</span></div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal d2">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1635784063388-a5d35b49a3bb?w=600&q=80&fit=crop" alt="Engine oil bottles" loading="lazy">
+        <div class="badge-wrap"><span class="badge badge-new">New</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Engine Care</div>
+        <div class="product-name">Full Synthetic Engine Oil 5W-30</div>
+        <div class="product-desc">API SN+ certified. Superior thermal stability, reduces engine wear, improves fuel economy. 1 Litre.</div>
+        <div class="product-footer">
+          <div class="product-price">&#8377;820</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal d3">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80&fit=crop" alt="Dual action car polisher machine" loading="lazy">
+        <div class="badge-wrap"><span class="badge badge-sale">20% Off</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Detailing Tools</div>
+        <div class="product-name">Dual Action Car Polisher Machine</div>
+        <div class="product-desc">900W variable speed DA polisher. Removes swirl marks and oxidation. Includes 3 foam pads.</div>
+        <div class="product-footer">
+          <div class="product-price">&#8377;3,199 <span class="old">&#8377;3,999</span></div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal d1">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?w=600&q=80&fit=crop" alt="Carnauba car wax paste" loading="lazy">
+        <div class="badge-wrap"><span class="badge badge-top">Popular</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Paint Protection</div>
+        <div class="product-name">Carnauba Paste Wax & Polish</div>
+        <div class="product-desc">Brazilian Grade-1 carnauba wax. Deep gloss finish with 3-month protection. Safe on all paint types. 200g.</div>
+        <div class="product-footer">
+          <div class="product-price">&#8377;1,150</div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal d2">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&q=80&fit=crop" alt="Brake cleaner spray" loading="lazy">
+        <div class="badge-wrap"><span class="badge badge-new">New</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Braking System</div>
+        <div class="product-name">Non-Chlorinated Brake Cleaner</div>
+        <div class="product-desc">Fast-drying formula removes brake dust, grease, and oil. Safe on ABS, drums, and rotors. 500ml.</div>
+        <div class="product-footer">
+          <div class="product-price">&#8377;490 <span class="old">&#8377;620</span></div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal d3">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?w=600&q=80&fit=crop" alt="Tyre shine dressing product" loading="lazy">
+        <div class="badge-wrap"><span class="badge badge-sale">Sale</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">Tyre Care</div>
+        <div class="product-name">High-Gloss Tyre Shine & Dressing</div>
+        <div class="product-desc">Water-based formula. Restores tyres to showroom finish, conditions and protects from UV cracking. 500ml.</div>
+        <div class="product-footer">
+          <div class="product-price">&#8377;399 <span class="old">&#8377;550</span></div>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo-wrap reveal">
+  <div class="promo-banner">
+    <div class="promo-img">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80&fit=crop" alt="Bike care and maintenance" loading="lazy">
+    </div>
+    <div class="promo-content">
+      <div class="promo-tag">Limited Offer</div>
+      <h3 class="promo-title">Complete <em>Bike Care</em> Kit for Monsoon</h3>
+      <p class="promo-desc">Chain lube, anti-rust spray, visor cleaner, and tyre conditioner — bundled at 35% off. Everything your motorcycle needs before the rains hit.</p>
+      <a href="#" class="btn-amber">Grab the Kit &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why-section reveal">
+  <div class="why-img-grid">
+    <div class="why-img-cell tall">
+      <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=500&q=80&fit=crop" alt="Mechanic applying lubricant to vehicle" loading="lazy">
+    </div>
+    <div class="why-img-cell">
+      <img src="https://images.unsplash.com/photo-1609348132078-b3f0cc01c9f7?w=500&q=80&fit=crop" alt="Car detailing products arranged" loading="lazy">
+    </div>
+    <div class="why-img-cell why-accent">
+      <div class="why-accent-num">15+</div>
+      <div class="why-accent-label">Years Trusted</div>
+    </div>
+  </div>
+  <div>
+    <div class="section-eyebrow">Why ApexCare</div>
+    <h2 class="section-title">Professional Grade,<br><em>Garage Friendly</em></h2>
+    <p class="section-sub">Every product we carry is tested, certified, and used by professional workshops — now available to every vehicle owner.</p>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Certified &amp; Authentic</div>
+          <div class="feature-text">All products are 100% genuine with manufacturer certificates. Zero counterfeits, guaranteed.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Pan-India Delivery</div>
+          <div class="feature-text">24-hour dispatch from 6 fulfillment centres. Tracked shipping to your doorstep — anywhere in India.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Expert Guidance</div>
+          <div class="feature-text">Not sure which product fits your vehicle? Our care specialists are available 7 days a week.</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Easy Returns</div>
+          <div class="feature-text">Not satisfied? Return unused products within 15 days for a full refund, no questions asked.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section reveal">
+  <div class="testi-bg">Reviews</div>
+  <div class="section-row">
+    <div>
+      <div class="section-eyebrow">Customer Reviews</div>
+      <h2 class="section-title">Trusted by <em>Riders</em><br>&amp; Drivers</h2>
+    </div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal d1">
+      <div class="testi-qmark">"</div>
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testi-text">The chain lube is exceptional. Applied it before a 300km highway run in rain — zero rust, smooth shift throughout. Been using Apex for 2 years, never going back.</div>
+      <div class="testi-divider"></div>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://i.pravatar.cc/80?img=11" alt="Rahul K"></div>
+        <div>
+          <div class="testi-name">Rahul Krishnan</div>
+          <div class="testi-vehicle">Royal Enfield Classic 350</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal d2">
+      <div class="testi-qmark">"</div>
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testi-text">The carnauba wax left my Creta looking like it just rolled out of the showroom. Easy to apply, lasts months. My neighbours thought I got a full repaint!</div>
+      <div class="testi-divider"></div>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://i.pravatar.cc/80?img=5" alt="Shreya M"></div>
+        <div>
+          <div class="testi-name">Shreya Menon</div>
+          <div class="testi-vehicle">Hyundai Creta 2022</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal d3">
+      <div class="testi-qmark">"</div>
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testi-text">Ordered the DA polisher — arrived next day, well-packaged. Removed two years of swirl marks in a single session. Apex's product recommendations were spot on.</div>
+      <div class="testi-divider"></div>
+      <div class="testi-author">
+        <div class="testi-avatar"><img src="https://i.pravatar.cc/80?img=33" alt="Arjun V"></div>
+        <div>
+          <div class="testi-name">Arjun Varma</div>
+          <div class="testi-vehicle">Honda Civic 2021</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-wrap reveal">
+  <div class="newsletter">
+    <div>
+      <h3 class="nl-title">Get <em>Early Access</em> to New Products</h3>
+      <p class="nl-sub">Join 50,000+ vehicle owners getting care tips, exclusive deals, and new launches first.</p>
+    </div>
+    <div class="nl-form">
+      <input type="email" class="nl-input" placeholder="Enter your email address">
+      <button class="nl-btn">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="footer-logo">APEX<span>CARE</span></a>
+      <p class="footer-about">India's trusted source for professional-grade vehicle care products — delivered to your garage door.</p>
+    </div>
+    <div>
+      <div class="footer-head">Shop</div>
+      <ul class="footer-links">
+        <li><a href="#">Engine Oils</a></li>
+        <li><a href="#">Chain Lubricants</a></li>
+        <li><a href="#">Polish &amp; Wax</a></li>
+        <li><a href="#">Tyre Care</a></li>
+        <li><a href="#">Cleaners</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-head">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Partners</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-head">Support</div>
+      <ul class="footer-links">
+        <li><a href="#">Vehicle Finder</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2025 ApexCare. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="#" class="social-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+      </a>
+      <a href="#" class="social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── LOADING SCREEN ── */
+  const loader = document.getElementById('loader');
+  const loaderLogo = document.getElementById('loaderLogo');
+  const loaderBar = document.getElementById('loaderBar');
+  let progress = 0;
+  loaderLogo.style.opacity = '1';
+  loaderLogo.style.transition = 'opacity 0.5s';
+  const loadInterval = setInterval(() => {
+    progress += Math.random() * 25 + 10;
+    if (progress >= 100) { progress = 100; clearInterval(loadInterval); }
+    loaderBar.style.width = progress + '%';
+    if (progress >= 100) {
+      setTimeout(() => { loader.classList.add('hidden'); initAll(); }, 400);
+    }
+  }, 200);
+
+  function initAll() {
+
+    /* ── LENIS SMOOTH SCROLL ── */
+    let lenis;
+    if (typeof Lenis !== 'undefined') {
+      lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+      if (typeof ScrollTrigger !== 'undefined') {
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+      }
+    }
+
+    /* ── MOBILE HAMBURGER ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('active');
+    });
+    document.querySelectorAll('#mobileNav a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('active');
+      });
+    });
+
+    /* ── NAV SHADOW ── */
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 8 ? '0 2px 24px rgba(26,22,18,0.09)' : 'none';
+    }, { passive: true });
+
+    /* ── SCROLL PROGRESS BAR ── */
+    const scrollProgress = document.getElementById('scrollProgress');
+    if (scrollProgress) {
+      scrollProgress.style.width = '100%';
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const p = h > 0 ? window.scrollY / h : 0;
+        scrollProgress.style.transform = 'scaleX(' + p + ')';
+      }, { passive: true });
+    }
+
+    /* ── BACK TO TOP ── */
+    const btt = document.getElementById('backToTop');
+    if (btt) {
+      window.addEventListener('scroll', () => {
+        btt.classList.toggle('visible', window.scrollY > 600);
+      }, { passive: true });
+      btt.addEventListener('click', () => {
+        if (lenis) { lenis.scrollTo(0); } else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+      });
+    }
+
+    /* ── CURSOR GLOW (desktop only) ── */
+    const glow = document.getElementById('cursorGlow');
+    if (glow && window.innerWidth > 960) {
+      glow.classList.add('active');
+      document.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      }, { passive: true });
+    }
+
+    /* ── GSAP ANIMATIONS ── */
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero entrance timeline
+      const heroTL = gsap.timeline({ delay: 0.2 });
+      heroTL
+        .to('.hero-badge', { opacity: 1, x: 0, duration: 0.6, ease: 'power3.out' })
+        .to('.hero-title', { opacity: 1, duration: 0.01 }, '-=0.3')
+        .to('.hero-title .line-inner', { y: '0%', duration: 0.8, ease: 'power3.out', stagger: 0.12 }, '-=0.25')
+        .to('.hero-desc', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+        .to('.hero-actions', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+        .to('.hero-trust', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+        .to('.hero-card', { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.7, ease: 'back.out(1.4)', onComplete: () => {
+          document.querySelector('.hero-card').classList.add('animated');
+        }}, '-=0.3');
+
+      // Scroll-triggered reveals for all .reveal elements
+      document.querySelectorAll('.reveal').forEach((el) => {
+        gsap.to(el, {
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+          opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+          delay: el.classList.contains('d1') ? 0.1 : el.classList.contains('d2') ? 0.22 : el.classList.contains('d3') ? 0.34 : 0
+        });
+      });
+
+      // Parallax on hero image
+      gsap.to('.hero-right img', {
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+        y: 80, scale: 1.08, ease: 'none'
+      });
+
+      // Parallax on promo image
+      gsap.to('.promo-img img', {
+        scrollTrigger: { trigger: '.promo-wrap', start: 'top bottom', end: 'bottom top', scrub: 1 },
+        y: 60, ease: 'none'
+      });
+
+      // Parallax on why-section images
+      document.querySelectorAll('.why-img-cell img').forEach(img => {
+        gsap.to(img, {
+          scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 1 },
+          y: 30, ease: 'none'
+        });
+      });
+
+      // Section titles — slide in from left
+      document.querySelectorAll('.section-title').forEach(title => {
+        gsap.from(title, {
+          scrollTrigger: { trigger: title, start: 'top 88%', once: true },
+          x: -30, opacity: 0, duration: 0.8, ease: 'power3.out'
+        });
+      });
+
+      // Section eyebrows — fade in
+      document.querySelectorAll('.section-eyebrow').forEach(eyebrow => {
+        gsap.from(eyebrow, {
+          scrollTrigger: { trigger: eyebrow, start: 'top 90%', once: true },
+          x: -15, opacity: 0, duration: 0.6, ease: 'power3.out'
+        });
+      });
+
+      // Feature items stagger
+      gsap.from('.feature-item', {
+        scrollTrigger: { trigger: '.feature-list', start: 'top 85%', once: true },
+        y: 30, opacity: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out'
+      });
+
+      // Testimonial cards stagger
+      gsap.from('.testi-card', {
+        scrollTrigger: { trigger: '.testi-grid', start: 'top 85%', once: true },
+        y: 40, opacity: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out'
+      });
+
+      // Newsletter section
+      gsap.from('.newsletter', {
+        scrollTrigger: { trigger: '.newsletter-wrap', start: 'top 85%', once: true },
+        y: 40, opacity: 0, duration: 0.8, ease: 'power3.out'
+      });
+
+      // Footer columns stagger
+      gsap.from('.footer-grid > div', {
+        scrollTrigger: { trigger: '.footer-grid', start: 'top 90%', once: true },
+        y: 25, opacity: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out'
+      });
+
+    } else {
+      // Fallback: basic IntersectionObserver reveals
+      const revealEls = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.07 });
+      revealEls.forEach(el => io.observe(el));
+      // Show hero elements immediately
+      document.querySelectorAll('.hero-badge,.hero-title,.hero-desc,.hero-actions,.hero-trust,.hero-card').forEach(el => {
+        el.style.opacity = '1'; el.style.transform = 'none';
+      });
+      document.querySelectorAll('.hero-title .line-inner').forEach(el => { el.style.transform = 'none'; });
+    }
+
+    /* ── ANIMATED COUNTERS ── */
+    function animateCounter(el, target, suffix) {
+      const dur = 1800;
+      const start = performance.now();
+      const numTarget = parseInt(target);
+      function tick(now) {
+        const elapsed = now - start;
+        const prog = Math.min(elapsed / dur, 1);
+        const eased = 1 - Math.pow(1 - prog, 3);
+        const val = Math.round(numTarget * eased);
+        el.innerHTML = val + '<span>' + suffix + '</span>';
+        if (prog < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    const trustNums = document.querySelectorAll('.trust-num');
+    const counterData = [
+      { target: 8, suffix: 'K+' },
+      { target: 50, suffix: 'K+' },
+      { target: 24, suffix: 'H' }
+    ];
+    const counterIO = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          const idx = Array.from(trustNums).indexOf(e.target);
+          if (idx >= 0 && counterData[idx]) {
+            animateCounter(e.target, counterData[idx].target, counterData[idx].suffix);
+          }
+          counterIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    trustNums.forEach(el => counterIO.observe(el));
+
+    /* ── TILT EFFECT ON PRODUCT CARDS ── */
+    if (window.innerWidth > 960) {
+      document.querySelectorAll('.product-card, .cat-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = 'perspective(600px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) translateY(-4px)';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    }
+
+  } // end initAll
+
+});
+</script>
+</body>
+</html>
